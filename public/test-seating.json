@@ -1,0 +1,77 @@
+{
+  "seatings": [
+    { "name" : "A1",
+      "available": true
+    },
+    { "name" : "A2",
+      "available": true
+    },
+    { "name" : "A3",
+      "available": true
+    },
+    { "name" : "A4",
+      "available": true
+    },
+    { "name" : "A5",
+      "available": true
+    },
+    { "name" : "A6",
+      "available": true
+    },
+    { "name" : "B1",
+      "available": true
+    },
+    { "name" : "B2",
+      "available": false
+    },
+    { "name" : "B3",
+      "available": false
+    },
+    { "name" : "B4",
+      "available": false
+    },
+    { "name" : "B5",
+      "available": false
+    },
+    { "name" : "B6",
+      "available": true
+    },
+    { "name" : "C1",
+      "available": true
+    },
+    { "name" : "C2",
+      "available": true
+    },
+    { "name" : "C3",
+      "available": false
+    },
+    { "name" : "C4",
+      "available": false
+    },
+    { "name" : "C5",
+      "available": true
+    },
+    { "name" : "C6",
+      "available": true
+    },
+    { "name" : "D1",
+      "available": true
+    },
+    { "name" : "D2",
+      "available": false
+    },
+    { "name" : "D3",
+      "available": false
+    },
+    { "name" : "D4",
+      "available": true
+    },
+    { "name" : "D5",
+      "available": true
+    },
+    { "name" : "D6",
+      "available": true
+    },
+    
+  ]
+}

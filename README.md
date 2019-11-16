@@ -2,8 +2,8 @@
 
 ## About this proyect 🚀
 
-This is a code challenge make to apply a Front-end position on Matzii digital Agency.
-It emulate a UI interface from a Cinema App, using React library for JS. 
+This is a code challenge that i  make to apply a Front-end position on Matzii digital Agency. It emulate a UI interface for a Cinema App, using React library for JS.
+This little proyect allows the user select some available sits on the cinema room.
 
 
 ### How to use it🔧
@@ -16,13 +16,13 @@ $npm install
 Next
 
 ```
-$ npm start
+$npm start
 ```
 
 The App will be running on port 3000 (http://localhost:3000/)
 
 
-## Autores ✒️
+## Made by ✒️
 
 * **Mariel Quezada** - *Developer* - [Marielk](https://github.com/Marielk)
 
