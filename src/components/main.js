@@ -197,7 +197,7 @@ class mainComponent extends Component {
 
   render() {
     return (
-      <div className="container pt-5 mx-auto w-75">
+      <div className="container pt-5 pb-5 mx-auto w-75">
         <h3 className="text-light mb-4 mt-3">Choose a place</h3>
         <div className="screen"></div>
         {this.state.data ? (
@@ -213,6 +213,7 @@ class mainComponent extends Component {
             <p className="d-inline text-light pl-3">Available</p>
           </div>
         </div>
+        <hr></hr>
         <div className="d-flex justify-content-between">
           <p className="text-light">Price:  ${this.amount}USD</p>
           <p className="text-light text-right font-weight-light">Max. of ticket per buy: 8</p>
@@ -220,7 +221,7 @@ class mainComponent extends Component {
         <div className="row lowBlock">
           <div className="col-6" id="selectedSeatingContainer">
           </div>
-          <div className="col-6">
+          <div className="col-6 justify-content-end d-flex">
             <button type="button" className="payment_button" id="payBtn" onClick={() => this.handleShow()}>Buy tickets
               <FontAwesomeIcon className="ml-1" icon={ faShoppingCart }/>
             </button>
