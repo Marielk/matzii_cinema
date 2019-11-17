@@ -9,10 +9,11 @@ class mainComponent extends Component {
   constructor() {
     super();
     this.state = {
-      show: this.show
+      show: this.show,
+      data: []
     }
     this.show= false;
-    
+    this.selected = [];
   }
   // open and close modal
   handleClose = () => {
@@ -23,26 +24,74 @@ class mainComponent extends Component {
     this.show = true;
     this.setState({ show: this.show });
   } 
-  //bring the seating from json file
-  UNSAFE_componentWillMount() {
-  
-  }
 
-  componentDidMount() {
+
+  UNSAFE_componentWillMount() {
+  }
+  
+  //bring the seating from json file
+  async componentDidMount() {
+    try {
+      const response = await fetch('./test-seating.json');
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      const json = await response.json();
+      this.setState({ data: json.seatings });
+    } catch (error) {
+      console.log(error);
+    }
  
   }
 
+  handleClick = id => {
+    if (this.selected.indexOf(id) === -1) {
+      document.getElementById(id).classList.add('buttonActive');
+      this.selected.push(id);
+    } else {
+      this.deleteButtonOnClick(id);
+    }
+  }
+
+  deleteButtonOnClick(id) {
+    document.getElementById(id).classList.remove('buttonActive');
+    this.selected.filter((selected) => {
+      if(selected !== id) {
+        return selected;
+      }
+    });
+  }
+
+
+  createBoard(seatings){
+    let board = [];
+    let boardChildrens = [];
+
+    seatings.map((seating) => {
+      if(seating.available === true) {
+        boardChildrens.push(<button onClick={() => this.handleClick(seating.name)} className="btn btn-outline-danger glow-button commonBtn" key={seating.name} id={seating.name}>{seating.name}</button>)
+      } else if (seating.available === false) {
+        boardChildrens.push(<button className="btn btn-primary commonBtn" disabled={true}  key={seating.name} id={seating.name}>{seating.name}</button>)
+      }
+    });
+
+    board.push(
+      <div className="seatingContainer mt-5 mb-5" key={1}>
+        <div className="" key={1}>{boardChildrens}</div>  
+      </div>
+    )
+    return board;
+  }
 
 
   render() {
     return (
-      <div className="container pt-5">
-        <div className="screen mx-auto"></div>
-        <div className="seatingContainer mt-5 mx-auto">
-          <button type="button" className="btn btn-primary">A1</button>
-          <button type="button" className="btn btn-outline-danger glow-button">A2</button>
-        </div>
-        <div className="row seatingInfo mx-auto mt-4 mb-4 p-3">
+      <div className="container pt-5 mx-auto w-75">
+        <div className="screen"></div>
+        {this.state.data ? (
+            this.createBoard(this.state.data)
+          ) : (console.log('no hay nada aun')) }
+        <div className="row seatingInfo mt-4 mb-4 p-3">
           <div className="col-6 align-content-around">
             <button type="button" disabled={true} className="btn btn-primary">A1</button>
             <p className="d-inline text-light pl-3">Booked</p>
@@ -52,7 +101,7 @@ class mainComponent extends Component {
             <p className="d-inline text-light pl-3">Available</p>
           </div>
         </div>
-        <div className="row mx-auto lowBlock">
+        <div className="row lowBlock">
           <div className="col-6">
             <div id="selectedSeatingContainer">
               <div className="selectedSeating text-light">A1
