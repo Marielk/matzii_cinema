@@ -29,9 +29,10 @@ $main-pink: #ff0097;
   transition: all 0.2s ease-in-out;
 }
 
-.glow-button:hover {
-  box-shadow: 0 5px 15px rgba(255, 109, 206, 0.863);
- }
+// .glow-button:hover {
+//   box-shadow: 0 5px 15px rgba(255, 109, 206, 0.863);
+//  }
+
 
  .selectedSeating{
    background-color: $main-pink ;
@@ -62,9 +63,62 @@ $main-pink: #ff0097;
   box-shadow: 0 5px 15px rgba(9,0,145,1);
 }
 
+.selected {
+  margin-top: 5%;
+  margin-left: 2%;
+  padding-bottom: 5%;
+  padding-left: 5%;
+  position: relative;
+  animation:moving 2s;
+  -moz-animation:moving 2s; /* Firefox */
+  -webkit-animation:moving 2s; /* Safari and Chrome */ 
+}
+
+.crossBtn{
+  vertical-align: super !important;
+  margin-left: 15%;
+}
+
+@keyframes moving{
+  0%{
+    top: 20px;
+    opacity: 0;
+  } 
+  100%{
+    top:0px;
+    opacity: 1;
+  } 
+}
+@-moz-keyframes moving{
+  0%{
+    top: 20px;
+    opacity: 0;
+  } 
+  100%{
+    top:0px;
+    opacity: 1;
+  }  
+}
+@-webkit-keyframes moving{
+  0%{
+    top: 20px;
+    opacity: 0;
+  } 
+  100%{
+    top:0px;
+    opacity: 1;
+  } 
+}​
+
+.show {
+  opacity: 0;
+  pointer-events:none;
+}
+
 @media (min-width: 320px) {
   .selectedSeating{
-    width: 100%;
+    width: 3rem;
+    font-size: 12px;
   }
 
   .commonBtn{
@@ -73,6 +127,7 @@ $main-pink: #ff0097;
     font-size: small !important;
     padding: 0px !important;
   }
+  
 }
 @media (min-width: 768px) {
   
@@ -80,12 +135,24 @@ $main-pink: #ff0097;
     width: 105%;;
   }
   .selectedSeating{
-    width: 50%;
+    width: 4rem;
   }
 }
 @media (min-width: 1024px) {
   
+  .selectedSeating{
+    width: 5rem;
+  }
   .payment_button{
     width: 80%;;
+  }
+
+  .selected {
+    padding-bottom: 2%;
+    padding-left: 2%;
+  }
+  
+  .crossBtn{
+    margin-left: 20%;
   }
 }

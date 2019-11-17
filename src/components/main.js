@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import './mainStyle.scss'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button';
@@ -10,10 +10,13 @@ class mainComponent extends Component {
     super();
     this.state = {
       show: this.show,
-      data: []
+      data: [],
+      amount: this.amount
     }
     this.show= false;
     this.selected = [];
+    this.excedMaximum = false;
+    this.amount = 0;
   }
   // open and close modal
   handleClose = () => {
@@ -41,27 +44,46 @@ class mainComponent extends Component {
     } catch (error) {
       console.log(error);
     }
- 
+    this.maxOfRows();
+    const btn = document.getElementById('payBtn');
+    btn.setAttribute('disabled', true);
   }
 
   handleClick = id => {
-    if (this.selected.indexOf(id) === -1) {
+    const index = this.selected.indexOf(id);
+    if (index === -1) {
       document.getElementById(id).classList.add('buttonActive');
       this.selected.push(id);
+      this.showSelection(id);
+      this.amount = this.amount + 8;
+      this.setState({ amount: this.amount });
     } else {
-      this.deleteButtonOnClick(id);
+      this.deleteButtonOnClick(id, index);
+      this.removeSelection(id);
+      this.amount = this.amount - 8;
+      this.setState({ amount: this.amount });
+    }
+    const btn = document.getElementById('payBtn');
+    if(this.selected.length > 0) {
+      btn.removeAttribute('disabled');
+    } else {
+      btn.setAttribute('disabled', true);
+    }
+    this.maxOfTickets();
+  }
+
+  deleteButtonOnClick(id, index) {
+    const button = document.getElementById(id);
+    button.classList.remove('buttonActive');
+    this.selected.splice(index, 1);
+  }
+
+  removeSelection(id) {
+    const elem = document.getElementById(`${id}pink`);
+    if (elem) {
+      elem.remove();
     }
   }
-
-  deleteButtonOnClick(id) {
-    document.getElementById(id).classList.remove('buttonActive');
-    this.selected.filter((selected) => {
-      if(selected !== id) {
-        return selected;
-      }
-    });
-  }
-
 
   createBoard(seatings){
     let board = [];
@@ -69,24 +91,114 @@ class mainComponent extends Component {
 
     seatings.map((seating) => {
       if(seating.available === true) {
-        boardChildrens.push(<button onClick={() => this.handleClick(seating.name)} className="btn btn-outline-danger glow-button commonBtn" key={seating.name} id={seating.name}>{seating.name}</button>)
+        boardChildrens.push(<button onClick={() => this.handleClick(seating.name)} className="btn btn-outline-danger glow-button commonBtn" 
+        key={seating.name} id={seating.name}>{seating.name}</button>)
       } else if (seating.available === false) {
-        boardChildrens.push(<button className="btn btn-primary commonBtn" disabled={true}  key={seating.name} id={seating.name}>{seating.name}</button>)
+        boardChildrens.push(<button className="btn btn-primary commonBtn" 
+        disabled={true}  key={seating.name} id={seating.name}>{seating.name}</button>)
       }
     });
 
     board.push(
-      <div className="seatingContainer mt-5 mb-5" key={1}>
+      <div id="seatingContainer" className="seatingContainer mt-5 mb-5" key={1}>
         <div className="" key={1}>{boardChildrens}</div>  
       </div>
     )
     return board;
   }
 
+  showSelection(id) {
+    let elem = document.createElement('div');
+    elem.className = 'selectedSeating text-light selected';
+    elem.innerHTML = id; 
+    elem.id = `${id}pink`;
+    let crossbtn = document.createElement('button');
+    crossbtn.className = 'btn btn-outline-light border-0 p-0 crossBtn';
+    crossbtn.innerText = 'x';
+    crossbtn.addEventListener('click', () => {
+      this.handleClick(id);
+    });
+    elem.appendChild(crossbtn);
+    const width = document.body.clientWidth;
+    const index = this.selected.indexOf(id);
+    if (width < 700) {
+      this.showSelectionSmallDevice(index, elem);
+    } else {
+      this.showSelectionLg(index, elem);
+    }
+  }
+
+  showSelectionLg(index, elem) {
+    if(index <= 3) {
+      let parentDiv = document.getElementById('1ticketRow'); 
+      parentDiv.appendChild(elem);
+    } else if (index <= 7 && index > 3) {
+      let parentDiv = document.getElementById('2ticketRow'); 
+      parentDiv.appendChild(elem);
+    } else {
+      let parentDiv = document.getElementById('3ticketRow'); 
+      parentDiv.appendChild(elem);
+    }
+  }
+
+  showSelectionSmallDevice(index, elem){
+    if(index <= 1) {
+      let parentDiv = document.getElementById('1ticketRow'); 
+      parentDiv.appendChild(elem);
+    } else if (index <= 3 && index > 1) {
+      let parentDiv = document.getElementById('2ticketRow'); 
+      parentDiv.appendChild(elem);
+    } else if (index <= 5 && index > 3){
+      let parentDiv = document.getElementById('3ticketRow'); 
+      parentDiv.appendChild(elem);
+    } else if (index <= 8 && index > 5){
+      let parentDiv = document.getElementById('4ticketRow'); 
+      parentDiv.appendChild(elem);
+    }
+  }
+
+  maxOfRows() {
+    const maxRows = 4;
+    let i = 0;
+    const parentDiv = document.getElementById('selectedSeatingContainer'); 
+    do {
+      i = i + 1;
+      parentDiv.insertAdjacentHTML('beforeend', `<div id='${i}ticketRow'>
+      </div>`);
+      let row = document.getElementById(`${i}ticketRow`);
+      row.style.display = 'flex';
+    } while (i < maxRows);
+  }
+
+  maxOfTickets() {
+    const maxTickets = 8;
+    const parent = document.getElementById('seatingContainer');
+    const btns = parent.children[0].children;
+    if (this.selected.length >= maxTickets) {
+      for (let btn of btns) {
+        btn.setAttribute('disabled', true);
+      }
+      this.excedMaximum = true;
+    } else if(this.excedMaximum === true && this.selected.length <= maxTickets) {
+      for (let btn of btns) {
+        const clase = btn.className;
+        const disabled = btn.hasAttribute('disabled'); 
+        const available = 'btn btn-outline-danger glow-button commonBtn';
+        const active = 'btn btn-outline-danger glow-button commonBtn buttonActive';
+        if (clase === available && disabled === true) {
+          btn.removeAttribute('disabled');
+        } else if(clase === active && disabled === true){
+          btn.removeAttribute('disabled');
+        }
+      }
+      this.excedMaximum = false;
+    }
+  }
 
   render() {
     return (
       <div className="container pt-5 mx-auto w-75">
+        <h3 className="text-light mb-4 mt-3">Choose a place</h3>
         <div className="screen"></div>
         {this.state.data ? (
             this.createBoard(this.state.data)
@@ -101,18 +213,15 @@ class mainComponent extends Component {
             <p className="d-inline text-light pl-3">Available</p>
           </div>
         </div>
+        <div className="d-flex justify-content-between">
+          <p className="text-light">Price:  ${this.amount}USD</p>
+          <p className="text-light text-right font-weight-light">Max. of ticket per buy: 8</p>
+        </div>
         <div className="row lowBlock">
-          <div className="col-6">
-            <div id="selectedSeatingContainer">
-              <div className="selectedSeating text-light">A1
-              <button className="btn btn-outline-light border-0 p-0 ml-3"> 
-                <FontAwesomeIcon icon={ faTimes }/>
-              </button>
-              </div>  
-            </div>
+          <div className="col-6" id="selectedSeatingContainer">
           </div>
           <div className="col-6">
-            <button type="button" className="payment_button" onClick={() => this.handleShow()}>Buy tickets
+            <button type="button" className="payment_button" id="payBtn" onClick={() => this.handleShow()}>Buy tickets
               <FontAwesomeIcon className="ml-1" icon={ faShoppingCart }/>
             </button>
           </div>
