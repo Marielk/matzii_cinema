@@ -193,7 +193,7 @@ class mainComponent extends Component {
 
   render() {
     return (
-      <div className="container pt-5 pb-5 mx-auto w-75">
+      <div className="container pt-5 pb-5 mx-auto w-sm-75 w-md-50 w-lg-40">
         <h3 className="text-light mb-4 mt-3">Choose a place</h3>
         <div className="screen"></div>
         {this.state.data ? (
@@ -228,7 +228,7 @@ class mainComponent extends Component {
             <Modal.Title>Challenge completed!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <img src="./Escena_test2_1.gif" className="w-100"></img>
+            <img src="./papa_kawaii_video.gif" alt="kawaii potato character" className="w-100"></img>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={() => this.handleClose()}>

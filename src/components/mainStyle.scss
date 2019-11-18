@@ -116,6 +116,10 @@ $main-pink: #ff0097;
 }
 
 @media (min-width: 320px) {
+  .w-sm-75 {
+    width: 75% !important;
+  }
+
   .selectedSeating{
     width: 3rem;
     font-size: 12px;
@@ -130,6 +134,9 @@ $main-pink: #ff0097;
   
 }
 @media (min-width: 768px) {
+  .w-md-50 {
+    width: 50% !important;
+  }
   
   .payment_button{
     width: 105%;;
@@ -139,7 +146,9 @@ $main-pink: #ff0097;
   }
 }
 @media (min-width: 1024px) {
-  
+  .w-lg-40 {
+    width: 40% !important;
+  }
   .selectedSeating{
     width: 5rem;
   }
