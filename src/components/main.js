@@ -27,10 +27,6 @@ class mainComponent extends Component {
     this.show = true;
     this.setState({ show: this.show });
   } 
-
-
-  UNSAFE_componentWillMount() {
-  }
   
   //bring the seating from json file
   async componentDidMount() {
@@ -229,15 +225,14 @@ class mainComponent extends Component {
         </div>
         <Modal show={this.show} onHide={() => this.handleClose()}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Challenge completed!</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body>
+            <img src="./Escena_test2_1.gif" className="w-100"></img>
+          </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={() => this.handleClose()}>
-              Close
-            </Button>
             <Button variant="primary" onClick={() => this.handleClose()}>
-              Save Changes
+              Close
             </Button>
           </Modal.Footer>
         </Modal>
