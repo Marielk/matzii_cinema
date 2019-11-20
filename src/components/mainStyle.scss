@@ -1,6 +1,72 @@
 $border-r : 10px;
 $main-pink: #ff0097;
 
+body{
+  background-color: #000;
+}
+.container{
+  max-width: 700px;
+  width: 80%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin: auto;
+}
+
+.title {
+  color: #f8f9fa;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+ }
+ 
+ .col-6{
+   flex: 0 0 50%;
+    max-width: 50%;	
+ }
+
+ .align-arround{
+  align-content: space-around;
+ }
+ 
+ .booked{
+  color: #fff;
+  background-color: #26015c;
+  border-color: #26015c
+ }
+ 
+ .available{
+   color: hotpink;
+    background-color: transparent;
+    border: 1px solid hotpink;
+ }
+ 
+ .textStyles{
+   color: #f8f9fa !important;
+   display: inline;
+   padding-left: 1rem;
+ }	
+ 
+ .priceInfoRow{
+   display: flex;
+   justify-content: between;
+ }
+ 
+ .lowBlock{
+   display: flex;
+ }
+ 
+ .selectionWrap{
+   display: flex;
+   flex-wrap: wrap;
+ }
+ 
+ .payButonWrap{
+   display: flex;
+   justify-content: flex-end;
+ }
+
 .screen{
   height: 0.5rem;
   border-radius: $border-r;
@@ -10,8 +76,10 @@ $main-pink: #ff0097;
 
 
 .seatingInfo{
-  // width: $main-size;
-  // border: 1px solid white;
+  display: flex;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
   border-radius: $border-r;
 }
 
@@ -21,6 +89,8 @@ $main-pink: #ff0097;
   font-size: larger;
   margin-right: 5%;
   margin-top: 5%;
+  border-radius: 5px;
+  border-style: solid;
 }
 
 .glow-button{
@@ -116,9 +186,6 @@ $main-pink: #ff0097;
 }
 
 @media (min-width: 320px) {
-  .w-sm-75 {
-    width: 75% !important;
-  }
 
   .selectedSeating{
     width: 3rem;
@@ -134,10 +201,7 @@ $main-pink: #ff0097;
   
 }
 @media (min-width: 768px) {
-  .w-md-50 {
-    width: 50% !important;
-  }
-  
+
   .payment_button{
     width: 105%;;
   }
@@ -146,9 +210,7 @@ $main-pink: #ff0097;
   }
 }
 @media (min-width: 1024px) {
-  .w-lg-40 {
-    width: 40% !important;
-  }
+
   .selectedSeating{
     width: 5rem;
   }
