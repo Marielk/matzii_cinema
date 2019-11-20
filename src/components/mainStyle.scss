@@ -1,11 +1,7 @@
-$border-r : 10px;
-$main-pink: #ff0097;
+@import '../common.scss';
 
-body{
-  background-color: #000;
-}
 .container{
-  max-width: 700px;
+  max-width: 420px;
   width: 80%;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -30,17 +26,6 @@ body{
   align-content: space-around;
  }
  
- .booked{
-  color: #fff;
-  background-color: #26015c;
-  border-color: #26015c
- }
- 
- .available{
-   color: hotpink;
-    background-color: transparent;
-    border: 1px solid hotpink;
- }
  
  .textStyles{
    color: #f8f9fa !important;
@@ -48,25 +33,7 @@ body{
    padding-left: 1rem;
  }	
  
- .priceInfoRow{
-   display: flex;
-   justify-content: between;
- }
  
- .lowBlock{
-   display: flex;
- }
- 
- .selectionWrap{
-   display: flex;
-   flex-wrap: wrap;
- }
- 
- .payButonWrap{
-   display: flex;
-   justify-content: flex-end;
- }
-
 .screen{
   height: 0.5rem;
   border-radius: $border-r;
@@ -83,147 +50,11 @@ body{
   border-radius: $border-r;
 }
 
-.commonBtn{
-  width: 10%;
-  height: 4rem;
-  font-size: larger;
-  margin-right: 5%;
-  margin-top: 5%;
-  border-radius: 5px;
-  border-style: solid;
-}
-
-.glow-button{
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: all 0.2s ease-in-out;
-}
-
-// .glow-button:hover {
-//   box-shadow: 0 5px 15px rgba(255, 109, 206, 0.863);
-//  }
-
-
- .selectedSeating{
-   background-color: $main-pink ;
-   border-radius: $border-r;
-   transition: all 0.2s ease-in-out;
- }
-
- .buttonActive{
-   background-color: $main-pink !important;
-   color: white !important;
- }
-
- .lowBlock{
-   
- }
-
-.payment_button{
-  background: rgb(9,0,145);
-  background: linear-gradient(84deg, rgba(9,0,145,1) 0%, rgba(255,0,177,1) 100%);
-  border-radius: $border-r;
-  color: white;
-  border: none;
-  width: 110%;;
-  height: 3.5rem;
-  font-size: large;
-}
-.payment_button:hover{
-  box-shadow: 0 5px 15px rgba(9,0,145,1);
-}
-
-.selected {
-  margin-top: 5%;
-  margin-left: 2%;
-  padding-bottom: 5%;
-  padding-left: 5%;
-  position: relative;
-  animation:moving 2s;
-  -moz-animation:moving 2s; /* Firefox */
-  -webkit-animation:moving 2s; /* Safari and Chrome */ 
-}
-
-.crossBtn{
-  vertical-align: super !important;
-  margin-left: 15%;
-}
-
-@keyframes moving{
-  0%{
-    top: 20px;
-    opacity: 0;
-  } 
-  100%{
-    top:0px;
-    opacity: 1;
-  } 
-}
-@-moz-keyframes moving{
-  0%{
-    top: 20px;
-    opacity: 0;
-  } 
-  100%{
-    top:0px;
-    opacity: 1;
-  }  
-}
-@-webkit-keyframes moving{
-  0%{
-    top: 20px;
-    opacity: 0;
-  } 
-  100%{
-    top:0px;
-    opacity: 1;
-  } 
-}​
-
-.show {
-  opacity: 0;
-  pointer-events:none;
-}
 
 @media (min-width: 320px) {
 
-  .selectedSeating{
-    width: 3rem;
-    font-size: 12px;
-  }
-
-  .commonBtn{
-    width: 11%;
-    height: 2rem;
-    font-size: small !important;
-    padding: 0px !important;
+  .seatingInfo{
+    padding: 0;
   }
   
-}
-@media (min-width: 768px) {
-
-  .payment_button{
-    width: 105%;;
-  }
-  .selectedSeating{
-    width: 4rem;
-  }
-}
-@media (min-width: 1024px) {
-
-  .selectedSeating{
-    width: 5rem;
-  }
-  .payment_button{
-    width: 80%;;
-  }
-
-  .selected {
-    padding-bottom: 2%;
-    padding-left: 2%;
-  }
-  
-  .crossBtn{
-    margin-left: 20%;
-  }
 }

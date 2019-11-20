@@ -28,6 +28,7 @@ class mainComponent extends Component {
   handleDeleted = (id) => {
     const index = this.selected.indexOf(id);
     this.selected.splice(index, 1);
+    this.setState({selected: this.selected});
     this.handleAmount(this.amount - 8);
   }
 
@@ -37,7 +38,7 @@ class mainComponent extends Component {
       <div className="container">
         <h3 className="title">Choose a place</h3>
         <div className="screen"></div>
-          <SeatingComponent onSelection={this.handleSelection} onAmount={this.handleAmount} selected={this.selected}/>
+          <SeatingComponent onSelection={this.handleSelection} onDeleted={this.handleDeleted} onAmount={this.handleAmount} selected={this.state.selected}/>
         <div className="seatingInfo">
           <div className="col-6 align-around">
             <button type="button" disabled={true} className="booked commonBtn">A1</button>

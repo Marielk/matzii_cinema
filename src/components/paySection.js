@@ -1,7 +1,7 @@
 import React, { Component }  from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import './mainStyle.scss';
+import './paySectionStyle.scss';
 import ModalComponent from './modal';
 
 
@@ -30,6 +30,10 @@ class PaySectionComponent extends Component {
     this.show = true;
     this.setState({ show: this.show });
   } 
+  handleClose = () =>{
+    this.show = false;
+    this.setState({ show: this.show });
+  } 
 
   deleteSelection(id) {
     this.props.onDeleted(id);
@@ -46,7 +50,7 @@ class PaySectionComponent extends Component {
           {/* style="flex-wrap: wrap" */}
           <div className="col-6 selectionWrap">
             {this.props.selected.map((selected) => {
-              return <div className="selectedSeating textStyles selected" key={selected}>
+              return <div className="selectedSeating selected" key={selected}>
                         {selected}
                         <div className="crossBtn" onClick={() => this.deleteSelection(selected)}>x</div>
                       </div>
@@ -58,7 +62,7 @@ class PaySectionComponent extends Component {
             </button>
           </div>
         </div>
-        <ModalComponent show={this.show} />
+        <ModalComponent show={this.show} onClose={this.handleClose}/>
       </div>
       
     )

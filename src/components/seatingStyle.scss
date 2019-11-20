@@ -1,0 +1,99 @@
+$border-r : 10px;
+$main-pink: #ff0097;
+ 
+ 
+ .booked{
+  color: #fff;
+  background-color: #26015c;
+  border-color: #26015c
+ }
+ 
+ .available{
+   color: hotpink;
+    background-color: transparent;
+    border: 1px solid hotpink;
+ }
+ 
+ .textStyles{
+   color: #f8f9fa !important;
+   display: inline;
+   padding-left: 1rem;
+ }	
+
+.seatingInfo{
+  display: flex;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  border-radius: $border-r;
+}
+
+.commonBtn{
+  width: 40px;
+  height: 40px;
+  font-size: larger;
+  margin-right: 5%;
+  margin-top: 5%;
+  border-radius: 5px;
+  border-style: solid;
+}
+.commonBtn:focus{
+  outline: none;
+}
+
+.glow-button{
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+}
+
+.glow-button:hover {
+  box-shadow: 0 5px 15px rgba(255, 109, 206, 0.863);
+ }
+
+
+ .selectedSeating{
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  padding-top: 5px;
+  background-color: $main-pink ;
+  border-radius: $border-r;
+  transition: all 0.2s ease-in-out;
+  color: white;
+ }
+
+ .buttonActive{
+   background-color: $main-pink !important;
+   color: white !important;
+ }
+
+
+
+@media (min-width: 320px) {
+
+  .commonBtn{
+    width: 28px;
+    height: 28px;
+    font-size: small;
+  }
+  
+}
+@media (min-width: 425px) {
+
+  .commonBtn{
+    width: 35px;
+    height: 35px;
+  }
+  
+}
+@media (min-width: 768px) {
+  .commonBtn{
+    width: 40px;
+    height: 40px;
+    font-size: small;
+  }
+}
+@media (min-width: 1024px) {
+ 
+}

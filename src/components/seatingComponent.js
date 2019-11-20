@@ -1,9 +1,9 @@
 import React, { Component }  from 'react';
-import './mainStyle.scss';
+import './seatingStyle.scss';
 
 class SeatingComponent extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       data: [],
       amount: this.amount,
@@ -39,14 +39,15 @@ class SeatingComponent extends Component {
   //   }
   // }
 
-  handleClick = id => {
-    const index = this.selected.indexOf(id);
+  handleClick = seating => {
+    const index = this.selected.indexOf(seating.name);
     if (index === -1) {
-      this.addSelection(id);
+      this.addSelection(seating.name);
       this.amountHandle('add');
       this.setState({ active: true });
+      this.getClassName(seating);
     } else {
-      this.deleteButtonOnClick(index);
+      this.deleteButtonOnClick(seating.name, index);
       this.amountHandle('remove');
       this.setState({ active: false });
     }
@@ -68,16 +69,42 @@ class SeatingComponent extends Component {
     this.props.onSelection(id);
   }
 
-  deleteButtonOnClick(index) {
+  deleteButtonOnClick(id, index) {
     this.selected.splice(index, 1);
+    this.props.onDeleted(id)
   }
 
+  getClassName = (seating) => {
+    if (seating.available) {
+      if(this.props.selected.length > 0) {
+        const findClass = this.findSelection(seating);
+        return findClass;
+      } else {
+        return 'available glow-button commonBtn';
+      }
+    } else {
+      return 'booked commonBtn';
+    }
+  }
+
+  findSelection = (seating) => {
+    const match = this.props.selected.find((selected) => {
+      if (selected === seating.name) {
+        return selected;
+      } 
+    });
+    if (match) {
+      return 'available glow-button commonBtn buttonActive';
+    } else {
+      return 'available glow-button commonBtn';
+    } 
+  }
 
   render() {
     return (<div className="seatingBoard">
     {this.state.data.map((seating) => {
-      return <button onClick={() => this.handleClick(seating.name)} 
-      className={seating.available ? "available glow-button commonBtn" : "booked commonBtn"}
+      return <button onClick={() => this.handleClick(seating)} 
+      className={this.getClassName(seating)}
       key={seating.name} disabled={seating.available ? false : true} >{seating.name}</button>
     }
     )}

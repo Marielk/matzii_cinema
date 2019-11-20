@@ -1,29 +1,31 @@
 import React, { Component }  from 'react';
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
+import './modalStyle.scss';
 
 class ModalComponent extends Component {
   
   handleClose = () => {
     console.log('cerrar modal');
-    this.props.show = false;
+    this.props.onClose(false);
   } 
   
   render() {
     return(
-      <Modal show={this.props.show} onHide={() => this.handleClose()}>
-        <Modal.Header closeButton>
-          <Modal.Title>Challenge completed!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <img src="./papa_kawaii_video.gif" alt="kawaii potato character" className="w-100"></img>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={() => this.handleClose()}>
-            Close
-          </Button>
-        </Modal.Footer>
-    </Modal>
+      <div className={this.props.show ? 'showModal' : 'hideModal'}>
+        <div className="backScreen"></div>
+        <div className="modal">
+          <div className="modalHeader">
+            <h3>Challenge completed!</h3>
+          </div>
+          <div className="modalBody">
+            <img src="./papa_kawaii_video.gif" alt="kawaii potato character" className="imgModal"></img>
+          </div>
+          <div className="modalFooter">
+            <button className="closeBtn" onClick={() => this.handleClose()}>
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
     )
   }  
   

@@ -1,0 +1,133 @@
+@import '../common.scss';
+
+ .priceInfoRow{
+   display: flex;
+   justify-content: between;
+ }
+ 
+ .lowBlock{
+   display: flex;
+ }
+ 
+ .selectionWrap{
+   display: flex;
+   flex-wrap: wrap;
+ }
+ 
+ .payButonWrap{
+   display: flex;
+   justify-content: flex-end;
+ }
+
+ .selectedSeating{
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  padding-top: 5px;
+  background-color: $main-pink ;
+  border-radius: $border-r;
+  transition: all 0.2s ease-in-out;
+  color: white;
+ }
+
+
+.payment_button{
+  background: rgb(9,0,145);
+  background: linear-gradient(84deg, rgba(9,0,145,1) 0%, rgba(255,0,177,1) 100%);
+  border-radius: $border-r;
+  color: white;
+  border: none;
+  width: 110%;;
+  height: 3.5rem;
+  font-size: large;
+}
+.payment_button:hover{
+  box-shadow: 0 5px 15px rgba(9,0,145,1);
+}
+
+.selected {
+  margin-top: 5%;
+  margin-left: 2%;
+  position: relative;
+  animation:moving 2s;
+  -moz-animation:moving 2s; /* Firefox */
+  -webkit-animation:moving 2s; /* Safari and Chrome */ 
+}
+
+.crossBtn{
+  vertical-align: super !important;
+  margin-left: 15%;
+}
+
+@keyframes moving{
+  0%{
+    top: 20px;
+    opacity: 0;
+  } 
+  100%{
+    top:0px;
+    opacity: 1;
+  } 
+}
+@-moz-keyframes moving{
+  0%{
+    top: 20px;
+    opacity: 0;
+  } 
+  100%{
+    top:0px;
+    opacity: 1;
+  }  
+}
+@-webkit-keyframes moving{
+  0%{
+    top: 20px;
+    opacity: 0;
+  } 
+  100%{
+    top:0px;
+    opacity: 1;
+  } 
+}​
+
+.show {
+  opacity: 0;
+  pointer-events:none;
+}
+
+
+@media (min-width: 320px) {
+
+  .selectedSeating{
+    width: 3rem;
+    font-size: 12px;
+    height: 30px;
+  }
+  
+}
+@media (min-width: 425px) {
+
+}
+@media (min-width: 768px) {
+
+  .payment_button{
+    width: 105%;;
+  }
+  .selectedSeating {
+    width: 5rem;
+    font-size: 14px;
+    height: 30px;
+    padding-top: 10px;
+  }
+
+}
+@media (min-width: 1024px) {
+
+  .payment_button{
+    width: 80%;;
+  }
+
+  .crossBtn{
+    margin-left: 20%;
+  }
+}
